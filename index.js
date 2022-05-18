@@ -44,6 +44,14 @@ async function run() {
             res.send(result);
         });
 
+        // Delete
+        app.delete("/item/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await itemCollection.deleteOne(query);
+            res.send(result);
+        });
+
         // update a data
         app.put("/item/:id", async (req, res) => {
             const id = req.params.id;
@@ -59,6 +67,15 @@ async function run() {
             console.log(req.body);
             console.log(req.params);
             res.json(result);
+        });
+
+        //filter my items
+        app.post("/myItems", async (req, res) => {
+            const author = req.body?.author;
+            const query = { author: author };
+            const cursor = itemCollection.find(query);
+            const items = await cursor.toArray();
+            res.send(items);
         });
     } finally {
         // await client.close();
