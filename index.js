@@ -103,8 +103,8 @@ async function run() {
             const decodedEmail = req.decoded.email;
             const authHeader = req.headers.authorization;
             if ((email = decodedEmail)) {
-                const author = req.body?.author;
-                const query = { author: author };
+                const email = req.body?.email;
+                const query = { email: email };
                 const cursor = itemCollection.find(query);
                 const items = await cursor.toArray();
                 res.send(items);
