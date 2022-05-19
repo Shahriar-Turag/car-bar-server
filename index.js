@@ -102,7 +102,7 @@ async function run() {
         app.post("/myItems", verifyJWT, async (req, res) => {
             const decodedEmail = req.decoded.email;
             const authHeader = req.headers.authorization;
-            if ((author = decodedEmail)) {
+            if ((email = decodedEmail)) {
                 const author = req.body?.author;
                 const query = { author: author };
                 const cursor = itemCollection.find(query);
