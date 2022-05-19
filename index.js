@@ -100,7 +100,7 @@ async function run() {
 
         //filter my items
         app.post("/myItems", verifyJWT, async (req, res) => {
-            const decodedEmail = req.decoded.email;
+            const decodedEmail = req.decoded.author;
             const authHeader = req.headers.authorization;
             if ((email = decodedEmail)) {
                 const author = req.body?.author;
